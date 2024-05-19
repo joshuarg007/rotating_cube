@@ -1,7 +1,9 @@
 let gl;
 let shaderProgram;
 let rotation = 0.0;
+let cubeDistance = 6.0; // Initial distance of the cube
 const mat4 = glMatrix.mat4;
+let depthSlider; // Declare depthSlider variable to hold the slider element
 
 function init() {
     const canvas = document.getElementById('webgl-canvas');
@@ -26,6 +28,9 @@ function init() {
         console.error('Failed to compile shaders.');
         return;
     }
+
+    // Retrieve the depth slider element
+    depthSlider = document.getElementById('depthSlider');
 
     shaderProgram = createProgram(gl, vertexShader, fragmentShader);
 
@@ -87,11 +92,10 @@ function init() {
     ];
 
     // Adjust the size of the cube
-const scale = 2.0;
-for (let i = 0; i < vertices.length; i++) {
-    vertices[i] *= scale;
-}
-
+    const scale = 2.0;
+    for (let i = 0; i < vertices.length; i++) {
+        vertices[i] *= scale;
+    }
 
     const colors = [
         [1.0, 1.0, 1.0, 1.0],    // Front face: white
@@ -131,7 +135,7 @@ for (let i = 0; i < vertices.length; i++) {
         const modelViewMatrix = mat4.create();
         const projectionMatrix = mat4.create();
     
-        mat4.translate(modelViewMatrix, modelViewMatrix, [0.0, 0.0, -6.0]);
+        mat4.translate(modelViewMatrix, modelViewMatrix, [0.0, 0.0, -cubeDistance]);
         mat4.rotateY(modelViewMatrix, modelViewMatrix, rotation);
         mat4.perspective(projectionMatrix, Math.PI / 3, canvas.width / canvas.height, 0.1, 100.0);
     
@@ -159,11 +163,15 @@ for (let i = 0; i < vertices.length; i++) {
     
         requestAnimationFrame(render);
     }
-    
 
     // Set WebGL parameters
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.enable(gl.DEPTH_TEST);
+
+    // Add event listener to update cube distance when slider value changes
+    depthSlider.addEventListener('input', function() {
+        cubeDistance = parseFloat(depthSlider.value);
+    });
 
     // Start rendering loop
     render();
