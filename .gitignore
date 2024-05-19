@@ -1,0 +1,95 @@
+# General
+.DS_Store
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Compiled files
+*.log
+*.bak
+*.map
+
+# Dependency directories
+/dist/
+/build/
+/out/
+
+# Editor specific files
+.vscode/
+.idea/
+
+# Environment specific files
+.env
+.env.local
+.env.*.local
+
+# macOS
+.DS_Store
+
+# WebStorm
+.idea/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# Node.js
+node_modules/
+
+# Compiled output
+dist/
+tmp/
+out-tsc/
+
+# TypeScript
+*.tsbuildinfo
+
+# Yarn
+yarn-error.log
+
+# Parcel
+.cache/
+.parcel-cache/
+
+# Next.js
+/.next/
+/out/
+
+# Nuxt.js
+/.nuxt/
+
+# vuepress
+/.vuepress/dist/
+
+# Sapper
+/__sapper__/
+
+# Output of webpack bundler
+/dist/
+
+# Visual Studio Code
+.vscode/
+
+# Jest Snapshot directory
+__snapshots__/
+
+# Puppeteer screenshots
+/screenshots/
+
+# Storybook
+/.storybook/
+
+# ESLint
+.eslintcache
+
+# Cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Docker Compose
+docker-compose.override.yml
