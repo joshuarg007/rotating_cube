@@ -1,47 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html> <!-- Declares the document type and version of HTML -->
+<html lang="en"> <!-- Specifies the language of the document -->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotating Cube WebGL</title>
+    <meta charset="UTF-8"> <!-- Sets the character encoding for the document to UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Defines the viewport properties for responsive design -->
+    <title>Rotating Cube WebGL</title> <!-- Sets the title of the document -->
 
-    <script src="https://cdn.jsdelivr.net/npm/gl-matrix@3/gl-matrix.js"></script>
-    
-    <script id="vertex-shader" type="x-shader/x-vertex">
-        attribute vec4 aPosition;
-        attribute vec4 aColor;
-        varying vec4 vColor;
+    <script src="https://cdn.jsdelivr.net/npm/gl-matrix@3/gl-matrix.js"></script> <!-- Loads the gl-matrix library from a CDN -->
+
+    <script id="vertex-shader" type="x-shader/x-vertex"> <!-- Starts a script block with an id and specifies it as a vertex shader -->
+        attribute vec4 aPosition; <!-- Declares a vertex attribute for position -->
+        attribute vec4 aColor; <!-- Declares a vertex attribute for color -->
+        varying vec4 vColor; <!-- Declares a varying variable to pass color to fragment shader -->
         
-        uniform mat4 uModelViewMatrix;
-        uniform mat4 uProjectionMatrix;
+        uniform mat4 uModelViewMatrix; <!-- Declares a uniform variable for model-view matrix -->
+        uniform mat4 uProjectionMatrix; <!-- Declares a uniform variable for projection matrix -->
         
         void main()
         {
-            vColor = aColor;
-            gl_Position = uProjectionMatrix * uModelViewMatrix * aPosition;
+            vColor = aColor; <!-- Assigns the color attribute to the varying variable -->
+            gl_Position = uProjectionMatrix * uModelViewMatrix * aPosition; <!-- Calculates the final position of the vertex -->
         }        
     </script>
-    <script id="fragment-shader" type="x-shader/x-fragment">
-        precision mediump float;
 
-        varying vec4 vColor;
+    <script id="fragment-shader" type="x-shader/x-fragment"> <!-- Starts a script block with an id and specifies it as a fragment shader -->
+        precision mediump float; <!-- Sets the precision for floating-point calculations in the fragment shader -->
+
+        varying vec4 vColor; <!-- Declares a varying variable to receive color from vertex shader -->
         
         void main()
         {
-            gl_FragColor = vColor;
+            gl_FragColor = vColor; <!-- Assigns the color received from vertex shader to the fragment -->
         }
         
     </script>
-    <script src="script.js"></script>
+
+    <script src="script.js"></script> <!-- Links an external JavaScript file -->
     <style>
-        canvas { display: block; }
+        canvas { display: block; } <!-- Applies a style to the canvas element to make it block-level -->
     </style>
 </head>
+
 <body>
     <div>
-        <label for="depthSlider">Cube Distance:</label>
-        <input id="depthSlider" type="range" min="1" max="10" step="0.1" value="6">
+        <label for="depthSlider">Cube Distance:</label> <!-- Creates a label for a slider -->
+        <input id="depthSlider" type="range" min="1" max="10" step="0.1" value="6"> <!-- Creates a range input for adjusting cube distance -->
     </div>
-    <canvas id="webgl-canvas" width="800" height="600"></canvas>
+    <canvas id="webgl-canvas" width="800" height="600"></canvas> <!-- Creates a canvas element for WebGL rendering -->
 </body>
 </html>
